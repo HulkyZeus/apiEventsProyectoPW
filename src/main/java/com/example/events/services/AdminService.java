@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +26,9 @@ public class AdminService implements IAdminService {
 	
 	@Autowired
 	private EventsRepositories eventsRepositories;
+	
+	@Autowired
+	private Environment env;
 	
 	@Override
 	public ResponseDTO login(UserDTO user) {		
@@ -88,7 +91,7 @@ public class AdminService implements IAdminService {
 	public ResponseDTO fileUpload(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 
-        Path storagePath = Paths.get("/Users/mariajosegarcia/Desktop/events-app/src/assets/images", fileName);
+        Path storagePath = Paths.get(env.getProperty("URL_PICTURE"), fileName);
 
         try {
             Files.copy(file.getInputStream(), storagePath, StandardCopyOption.REPLACE_EXISTING);

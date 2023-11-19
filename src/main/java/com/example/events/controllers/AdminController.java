@@ -1,13 +1,8 @@
 package com.example.events.controllers;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +19,7 @@ import com.example.events.models.ResponseDTO;
 import com.example.events.models.UserDTO;
 import com.example.events.services.IAdminService;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://blue-cliff-09400c310.4.azurestaticapps.net"}, maxAge = 3600)
+@CrossOrigin(origins =  "*", maxAge = 3600)
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
