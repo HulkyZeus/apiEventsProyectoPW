@@ -15,7 +15,7 @@ import com.example.events.models.EventDTO;
 import com.example.events.models.FilterEventsDTO;
 import com.example.events.services.IEventsService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:4200", "https://blue-cliff-09400c310.4.azurestaticapps.net"}, maxAge = 3600)
 @RestController
 @RequestMapping("/events")
 public class EventsController {
