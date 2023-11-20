@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.example.events.models.EventDTO;
 import com.example.events.models.FilterEventsDTO;
-import com.example.events.models.ResponseDTO;
 
 public interface IEventsService {
 	public List<EventDTO> getAllEvents();

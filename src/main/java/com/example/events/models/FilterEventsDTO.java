@@ -1,6 +1,5 @@
 package com.example.events.models;
 
-import java.time.LocalDate;
 
 public class FilterEventsDTO {
 	private String name;
