@@ -30,6 +30,7 @@ public class AdminService implements IAdminService {
 	@Autowired
 	private Environment env;
 	
+	
 	@Override
 	public ResponseDTO login(UserDTO user) {		
 		User userDB = userRepositories.findByEmail(user.getEmail());
@@ -104,4 +105,29 @@ String fileName = file.getOriginalFilename();
 	}
 	
 	}
+	public ResponseDTO upload(MultipartFile file) {
+        try {
+            String fileName = file.getOriginalFilename();
+
+            if (fileName == null || fileName.isEmpty()) {
+                return new ResponseDTO("Nombre de archivo inválido", false);
+            }
+
+            Path staticFolderPath = Paths.get(env.getProperty("URL_PICTURE"), fileName);
+            System.out.println(staticFolderPath);
+
+            Files.copy(file.getInputStream(), staticFolderPath, StandardCopyOption.REPLACE_EXISTING);
+
+            return new ResponseDTO("Archivo subido correctamente", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseDTO("Error al subir el archivo", false);
+        }
+    }
+	
+	
+	
+
+	
+	
 }
