@@ -89,16 +89,19 @@ public class AdminService implements IAdminService {
 	
 	@Override
 	public ResponseDTO fileUpload(MultipartFile file) {
-		String fileName = file.getOriginalFilename();
-
-        Path storagePath = Paths.get(env.getProperty("URL_PICTURE"), fileName);
-
+String fileName = file.getOriginalFilename();
+		
         try {
-            Files.copy(file.getInputStream(), storagePath, StandardCopyOption.REPLACE_EXISTING);
+        	Path staticFolderPath = Paths.get(env.getProperty("URL_PICTURE") + fileName);
+            
+            System.out.println(staticFolderPath);
+
+            Files.copy(file.getInputStream(), staticFolderPath, StandardCopyOption.REPLACE_EXISTING);
+
             return new ResponseDTO("Archivo subido correctamente", true);
         } catch (IOException e) {
             return new ResponseDTO("Error al subir el archivo: " + e);
-        }
 	}
 	
+	}
 }
